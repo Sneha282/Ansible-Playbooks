@@ -1,0 +1,31 @@
+---
+- hosts: all
+  become: true
+  vars:
+   name: Sweety
+   city: Bangalore
+  tasks:
+    - name: install httpd
+      yum: 
+        name: httpd
+        state: latest
+
+    - name: copy index.html
+      template: 
+        src: index.html
+        dest: /var/www/html/index.html
+      notify: 
+      - restart httpd server
+
+  handlers:
+    - name: restart httpd server
+      service: 
+        name: httpd
+        state: restarted
+        enabled: true
+...
+
+
+
+
+## from command line will make some change, then handler task will get execute. If no change, handler task will not execute.
