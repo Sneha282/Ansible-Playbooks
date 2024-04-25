@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  become: true
+  vars_files:
+    - password.yaml
+  tasks:
+    - name: echo password
+      ansible.builtin.debug: 
+       msg: "Password is {{password}}"
+
+
+
+       
