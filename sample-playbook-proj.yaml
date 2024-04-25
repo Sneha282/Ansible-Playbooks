@@ -1,0 +1,9 @@
+---
+- name: Echo Password
+  hosts: "{{ env }}"
+  vars_files:
+    - var.yaml
+  tasks:
+    - name: Echo Environment
+      ansible.builtin.debug:
+        msg: "Selected Environment is {{ env }}"
