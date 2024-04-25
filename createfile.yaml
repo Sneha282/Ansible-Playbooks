@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: create a file
+      file: 
+        path: /tmp/first.sh
+        mode: 0777
+        owner: ec2-user
+        state: touch
+...
