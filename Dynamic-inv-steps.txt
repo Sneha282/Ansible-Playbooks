@@ -1,0 +1,32 @@
+Intro- my notes
+======================
+1.login to AWS account and create IAM user and generate access keys for that user.
+2. Using above access keys i am able to access servers in my AWS and get the IP address details of nodes.
+3. If we go with yaml syntax, we have one plugin available in ansible AWS EC2 Inventory plugin
+pre-req to use ansible AWS EC2 Inventory plugin:
+python >= 3.6
+boto3 >= 1.26.0
+botocore >= 1.29.0
+
+To run the Inventory:
+ansible-inventory --graph -i inventory_aws_ec2.yaml
+:==result for above command:
+@all:
+  |--@ungrouped:
+  |--@aws_ec2:
+  |  |--172.31.35.16
+  |  |--172.31.34.75
+  |  |--172.31.38.82
+  |--@Ansible_nodes:
+  |  |--172.31.35.16
+  |  |--172.31.34.75
+  |--@Ansible_master:
+  |  |--172.31.38.82
+
+
+To run the playbook with above custom inventory
+
+ansible Ansible_nodes -i inventory_aws_ec2.yaml -m ping
+
+Script stored in this file ==inventory_aws_ec2.yaml
+
